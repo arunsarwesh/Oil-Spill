@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    
+}
+.n button{
+    background: transparent;
+    border-color: transparent;
+    float: right;
+}
+body {
+    min-width: 720px;
+    background-image: url('F:\Oil\Oil-Spill\ShipOilspills\Ships\static\b.webp');
+    background-attachment: fixed;
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center;
+}
+
+#nav{
+    background: skyblue;
+    display: inline-flex;
+    width: 100%;
+    padding: 0 50px;
+}
+#nav a{
+    text-decoration: none;
+    color: black;
+}
+@media screen and (max-width: 720px) {
+
+
+}
+
