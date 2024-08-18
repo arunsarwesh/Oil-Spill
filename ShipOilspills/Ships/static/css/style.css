@@ -14,17 +14,85 @@ body {
     background-size: cover; /* Ensures the image covers the entire background */
     background-position: center;
 }
+#nav li.active span {
+    color: #007BFF; /* Example active color */
+}
 
 #nav{
-    background: skyblue;
+    
     display: inline-flex;
     width: 100%;
+    align-items: end;
     padding: 0 50px;
+}
+#icon{
+    display: inline-flex;
+    float: left;
+    border: .1em solid black;
+    margin-right: 10%;
+}
+nav{
+    position: relative;
+    background: skyblue;
+    display: flex;
 }
 #nav a{
     text-decoration: none;
     color: black;
 }
+section {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
 @media screen and (max-width: 720px) {
 
 

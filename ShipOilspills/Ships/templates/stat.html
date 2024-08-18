@@ -12,12 +12,67 @@
 <body>
     <nav>
         <ul id="nav">
-            <a href="#"><li id="nav"><span class="material-symbols-outlined">directions_boat</span></li></a>
-            <a href="#"><li id="nav"><span class="material-symbols-outlined">notification_important</span></li></a>
-            <a href="#"><li id="nav"><span class="material-symbols-outlined"> help_center</span></li></a>
-            <a href="#"><li id="nav"><span class="material-symbols-outlined">account_box</span></li></a>
+            <a href="#Home"><li class="ho" id="nav"><span class="material-symbols-outlined">directions_boat</span></li></a>
+            <a href="#Help"><li class="he" id="nav"><span class="material-symbols-outlined">notification_important</span></li></a>
+            <a href="#About"><li class="ab" id="nav"><span class="material-symbols-outlined"> help_center</span></li></a>
+            <a href="#contact"><li class="co" id="nav"><span class="material-symbols-outlined">account_box</span></li></a>
         </ul>
-       </nav>
-    
+        <span id="icon" class="material-symbols-outlined">sailing</span>
+    </nav>
+    <section id="Home">
+
+        <h1>Container Ships Oil Spill Detection System</h1>
+        <p>Welcome to our innovative solution for detecting and mitigating oil spills caused by container ships. Our system leverages advanced technologies to protect our oceans and marine life.</p>
+        <img src="{% static 'images/oil_spill_detection.jpg' %}" alt="Oil Spill Detection System">
+        <a href="#About" class="cta-button">Learn More</a>
+    </section>
+    <section id="Help">
+        <h2>Help & Support</h2>
+        <h3>User Guide</h3>
+        <p>Follow these steps to use our Oil Spill Detection System:</p>
+        <ol>
+            <li>Step 1: Access the system dashboard.</li>
+            <li>Step 2: Upload or monitor the satellite data.</li>
+            <li>Step 3: Review the detection results and alerts.</li>
+        </ol>
+        <h3>Frequently Asked Questions</h3>
+        <ul>
+            <li><strong>How does the system detect oil spills?</strong> The system uses satellite imagery and machine learning to identify potential spills.</li>
+            <li><strong>Can I customize alerts?</strong> Yes, you can set custom thresholds and notification settings in the dashboard.</li>
+        </ul>
+    </section>
+    <section id="About">
+        <h2>About Our Project</h2>
+        <p>Our project is dedicated to developing a robust system for detecting oil spills from container ships, aiming to reduce environmental impact and promote maritime safety.</p>
+        <h3>Our Team</h3>
+        <p>Meet the team of experts behind this project:</p>
+        <ul>
+            <li><strong>John Doe:</strong> Lead Developer</li>
+            <li><strong>Jane Smith:</strong> Marine Environmental Specialist</li>
+            <li><strong>Alex Johnson:</strong> Data Scientist</li>
+        </ul>
+        <h3>Project Goals</h3>
+        <p>We aim to deploy this system globally to monitor maritime activities and respond promptly to oil spills.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form action="/submit_form/" method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Or reach out to us at:</p>
+        <p>Email: <a href="mailto:info@oilspilldetection.com">info@oilspilldetection.com</a></p>
+        <p>Phone: +91-9619096965</p>
+    </section>
+                
 </body>
 </html>
