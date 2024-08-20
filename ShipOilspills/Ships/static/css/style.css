@@ -8,37 +8,50 @@
     float: right;
 }
 body {
+    
     min-width: 720px;
-    background-image: url('F:\Oil\Oil-Spill\ShipOilspills\Ships\static\b.webp');
     background-attachment: fixed;
-    background-size: cover; /* Ensures the image covers the entire background */
+    background-size: cover;
     background-position: center;
 }
-#nav li.active span {
-    color: #007BFF; /* Example active color */
-}
-
 #nav{
-    
+    position: relative;
     display: inline-flex;
     width: 100%;
     align-items: end;
     padding: 0 50px;
 }
-#icon{
-    display: inline-flex;
-    float: left;
-    border: .1em solid black;
-    margin-right: 10%;
-}
 nav{
-    position: relative;
+    position: fixed;
+    width: 100%;
+    margin-top: -20px;
+    padding: 10px;
     background: skyblue;
     display: flex;
 }
 #nav a{
     text-decoration: none;
     color: black;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 25px;
+}
+#nav a:hover{
+    color: whitesmoke;
+    transition: 0.2s;
+    transform: scaleX(1.05);
+}
+#nav a:active{
+    color: #007BFF;
+}
+nav ul{
+    list-style: none;
+    margin: 10px 30px;
+}
+.container{
+    
+    margin: 20px;
+    padding-top: 50px;
 }
 section {
     padding: 20px;
