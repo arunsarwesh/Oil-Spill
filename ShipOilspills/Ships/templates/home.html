@@ -1,4 +1,35 @@
-{% extends stat.html %}
+{% extends "stat.html" %}
 {% block start %}
+{% load static %}
+<section class="hero">
+    <div class="container">
+        <h1>Online Strategy <br> Software Solutions</h1>
+        <p>Serving diverse industries in the world of IT & software. Teba theme perfectly designed to make awesome website for any business.</p>
+        <div class="hero-buttons">
+            <button class="btn">View More</button>
+        </div>
+    </div>
+</section>
+<section class="services">
+    <div class="container">
+        <div class="service">
+            <i class="fas fa-lightbulb"></i>
+            <h2>Data Analytics</h2>
+            <p>We're full service which means we've got you covered on design and digital.</p>
+        </div>
+        <div class="service">
+            <i class="fas fa-cog"></i>
+            <h2>IT Design</h2>
+            <p>We're full service which means we've got you covered on design and digital.</p>
+        </div>
+        <div class="service">
+            <i class="fas fa-lock"></i>
+            <h2>Data Security</h2>
+            <p>We're full service which means we've got you covered on design and content.</p>
+        </div>
+    </div>
+</section>
 
+<script src="{% static 'index.js' %}">
+</script>
 {% end block %}

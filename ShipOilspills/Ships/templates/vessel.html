@@ -1,0 +1,43 @@
+{% extends "stat.html" %}
+{% block start %}
+{% load static %}
+
+<title>Ship Position Reports</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<style>
+    
+</style>
+<body>
+    <h1>Ship Position Reports</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Ship ID</th>
+                <th>Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Speed</th>
+                <th>Cog</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.ship_id }}</td>
+                <td>{{ report.name }}</td>
+                <td>{{ report.latitude }}</td>
+                <td>{{ report.longitude }}</td>
+                <td>{{ report.speed }}</td>
+                <td>{{ report.cargo_type }}</td>
+                <td>{{ report.timestamp }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No reports available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

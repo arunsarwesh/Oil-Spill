@@ -52,22 +52,6 @@ header {
     font-weight: bold;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-left: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-}
-
 .header-right a {
     text-decoration: none;
     color: #fff;
@@ -143,7 +127,26 @@ nav ul li a {
     font-size: 16px;
     line-height: 1.5;
 }
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
 footer {
     background-color: #333;
     color: #fff;
