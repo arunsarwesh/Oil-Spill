@@ -21,6 +21,7 @@ from Ships import views
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('', views.main),
+    path('', views.AIS, name="AIS"),
+    path('map/', views.map, name="map"),
     
 ]

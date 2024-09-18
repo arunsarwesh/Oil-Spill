@@ -1,0 +1,93 @@
+{% extends "stat.html" %}
+{% block start %}
+{% load static %}
+
+<title>Ship Position Reports</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+    /* Floating button style */
+    .float-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #ffffff00;
+        color: rgba(255, 255, 255, 0);
+        border: none;
+        border-radius: 50px;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        font-size: 30px;
+        line-height: 60px;
+        cursor: pointer;
+
+    }
+
+
+    .float-btn:active {
+        cursor: alias;
+    }
+    .float-btn img{
+        padding-left: 50px;
+    }
+        /* Tooltip styling */
+        .float-btn:hover::after {
+        content: "View it on map";
+        position: absolute;
+        bottom: 75px;
+        right: 0px;
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        white-space: nowrap;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    }
+</style>
+
+<body>
+    <h1>Ship Position Reports</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Ship ID</th>
+                <th>Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Speed</th>
+                <th>Cog</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report.ship_id }}</td>
+                <td>{{ report.name }}</td>
+                <td>{{ report.latitude }}</td>
+                <td>{{ report.longitude }}</td>
+                <td>{{ report.speed }}</td>
+                <td>{{ report.Cog }}</td>
+                <td>{{ report.timestamp }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No reports available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Floating button -->
+    <button class="float-btn" onclick="goToMap()"><img src="{% static 'map-icon.png' %}" alt=""></button>
+
+    <script>
+        function goToMap() {
+            window.location.href = "http://127.0.0.1:8000/map/"; // Navigates to the map page
+        }
+        
+    </script>
+    
+{% endblock %}

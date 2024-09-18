@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ship&Co</title>
+    <title>Jack Sparrow</title>
     {% load static %}
     <link rel="shortcut icon" type="x-icon" href="{% static 'msc.jpg' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -15,52 +15,29 @@
         <div class="container">
             <img src="{% static 'msc.jpg' %}">
             <div class="header-left">
-                <a href="#" class="logo">Ship&Co</a>
+                <a href="#" class="logo">Jack Sparrow</a>
             </div>
             <div class="header-right">
-                <a href="tel:9876543210">9876543210</a>
+                <!-- <a href="tel:9876543210">9876543210</a> -->
                 <a href="mailto:ship@info.com">ship@info.com</a>
                 <span id="timestamp"></span>
-                <a href="vessel.html">AIS DATA</a>
+                <button onclick="AIS" class="btn">Ais Data</button>
                 <button class="btn">Oil spill</button>
             </div>
         </div>
     </header>
-    <section class="hero">
-        <div class="container">
-            <h1>Online Strategy <br> Software Solutions</h1>
-            <p>Serving diverse industries in the world of IT & software. Teba theme perfectly designed to make awesome website for any business.</p>
-            <div class="hero-buttons">
-                <button class="btn">View More</button>
-            </div>
-        </div>
-    </section>
-    <section class="services">
-        <div class="container">
-            <div class="service">
-                <i class="fas fa-lightbulb"></i>
-                <h2>Data Analytics</h2>
-                <p>We're full service which means we've got you covered on design and digital.</p>
-            </div>
-            <div class="service">
-                <i class="fas fa-cog"></i>
-                <h2>IT Design</h2>
-                <p>We're full service which means we've got you covered on design and digital.</p>
-            </div>
-            <div class="service">
-                <i class="fas fa-lock"></i>
-                <h2>Data Security</h2>
-                <p>We're full service which means we've got you covered on design and content.</p>
-            </div>
-        </div>
-    </section>
+    {% block start %}
+    {% endblock %}
     <footer>
         <div class="container">
-            <p>&copy; 2024 ship&co . All rights reserved.</p>
+            <p>&copy; 2024 Jack Sparrow . All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        function AIS() {
+            window.location.href = "http://127.0.0.1:8000/"; 
+        }
         function updateTimestamp() {
             const timestampElement = document.getElementById('timestamp');
             const now = new Date();

@@ -1,0 +1,96 @@
+{% extends "stat.html" %}
+{% block start %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship Route Map</title>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <link rel="stylesheet" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 550px;
+            background: grey;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script>
+        // Initialize the platform object with your App Id and API key
+        var platform = new H.service.Platform({
+            'apikey': 'y0u3LJVSAVmA7mWfeI6ovFchKXWzYnAtv5jbwvA2ijU'
+        });
+
+        // Obtain the default map types from the platform object
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Instantiate the map using the default map type and set center and zoom level
+        var map = new H.Map(document.getElementById('map'),
+            defaultLayers.vector.normal.map, {
+                center: {lat: 7.550328, lng: 77.188652}, // Default center (equator)
+                zoom: 5,  // Zoom level
+                pixelRatio: window.devicePixelRatio || 1
+            }
+        );
+
+        // Add interaction to the map (zoom, pan)
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+        // Create the default UI components
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+
+
+        // Function to add a marker and info bubble for a ship
+    function addShipMarkerWithDetails(ship) {
+        var shipIcon = new H.map.Icon("{% static 'cruise.png' %}", {size: {w: 25, h: 25}});
+        var marker = new H.map.Marker({lat: ship.lat, lng: ship.lng}, { icon: shipIcon });
+
+        // Add the marker to the map
+        map.addObject(marker);
+
+        // Add an info bubble when the ship marker is clicked
+        marker.addEventListener('tap', function() {
+            var bubble = new H.ui.InfoBubble({lat: ship.lat, lng: ship.lng}, {
+                content: `<b>${ship.ship_id}</b><br>COG: ${ship.Cog}<br>Speed: ${ship.speed} knots<br>Latitude: ${ship.lat}<br>Longitude ${ship.lng}`
+            });
+            ui.addBubble(bubble);
+        });
+    }
+
+    // Initialize ships array
+    var ships = [];
+
+    // Iterate over the ship data from Django
+    {% for report in reports %}
+    ships.push({
+        time: "{{ report.timestamp }}",
+        name: "{{ report.name }}",  // Properly escape Django variables            
+        ship_id: "{{ report.ship_id }}",
+        speed: "{{ report.speed }}",
+        Cog: "{{ report.Cog }}",
+        lat: "{{ report.latitude }}",
+        lng: "{{ report.longitude }}"
+    });
+    {% endfor %}
+
+    // Add each ship marker to the map with its details
+    ships.forEach(function(ship) {
+        addShipMarkerWithDetails(ship);
+    });
+
+    function AIS() {
+        window.location.href = "http://127.0.0.1:8000/"; 
+    }
+</script>
+
+{% endblock %}
