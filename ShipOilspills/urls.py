@@ -21,7 +21,7 @@ from Ships import views
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('', views.AIS, name="AIS"),
+    path('https://arunsarwesh13.pythonanywhere.com/', views.AIS, name="AIS"),
     path('map/', views.map, name="map"),
     
 ]
