@@ -2,55 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="x-icon" href="images.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ship&Co</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqydsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>{% if action == 'login' %}Login{% else %}Signup{% endif %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .container { width: 300px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        h2 { text-align: center; }
+        .error { color: red; }
+        .success { color: green; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <img src="images.png">
-            <div class="header-left">
-                <a href="#" class="logo">Ship&Co</a>
-                <nav>
-                    <ul>
-                        <li><a href="#">IMO</a></li>
-                        <li><a href="#">latitude&longitude</a></li>
-                        <li><a href="#">SOG</a></li>
-                        <li><a href="#">COG</a></li>
-                        <li><a href="#">vessel</a></li>
-                        <li><a href="#">ETA</a></li>
-                        <li><a href="#">cargo</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header-right">
-                <a href="tel:9876543210">9876543210</a>
-                <a href="mailto:ship@info.com">ship@info.com</a>
-                <span id="timestamp"></span>
-                <button class="btn">Oil spill</button>
-            </div>
-        </div>
-    </header>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 ship&co . All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        function updateTimestamp() {
-            const timestampElement = document.getElementById('timestamp');
-            const now = new Date();
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
-            timestampElement.textContent = `Date: ${date} | Time: ${time}`;
-        }
-
-        updateTimestamp();
-        setInterval(updateTimestamp, 1000); // update every second
-    </script>
+    <div class="container">
+        <h2>{% if action == 'login' %}Login{% else %}Signup{% endif %}</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% if action == 'login' %}Login{% else %}Signup{% endif %}</button>
+        </form>
+        {% if action == 'login' %}
+            <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+        {% else %}
+            <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+        {% endif %}
+    </div>
 </body>
 </html>
