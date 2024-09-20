@@ -17,11 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Ships import views
-
+from django.contrib.auth import views as auth_views
+from django.urls import path
+from Ships.views import login_view, signup_view, logout_view
 urlpatterns = [
-    
     path('admin/', admin.site.urls),
-    path('', views.AIS, name="AIS"),
-    path('map/', views.map, name="map"),
-    
+    path('home/', views.home_view, name="home"),
+    path('map/', views.map, name="map"),              # URL for the map view
+
+    # Django's built-in login and logout views
+     path('login/', login_view, name='login'),
+    path('signup/', signup_view, name='signup'),
+    path('logout/', logout_view, name='logout'),
 ]
+
