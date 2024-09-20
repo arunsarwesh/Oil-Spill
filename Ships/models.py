@@ -15,6 +15,6 @@ class PositionReport(models.Model):
         indexes = [
             models.Index(fields=['ship_id']),  # Index for ship ID to improve query performance
         ]
-
+#
     def __str__(self):
         return f"Ship ID: {self.ship_id} | Lat: {self.latitude}, Lon: {self.longitude} | Time: {self.timestamp}"
