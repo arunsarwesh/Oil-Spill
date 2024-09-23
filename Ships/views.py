@@ -1,12 +1,10 @@
-from django.shortcuts import render
-from Ships.models import PositionReport
-# myapp/views.py
-
 from django.shortcuts import render, redirect
+from Ships.models import PositionReport
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
 
+# Login view for authenticated users
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -21,6 +19,7 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'auth.html', {'form': form, 'action': 'login'})
 
+# Sign-up view for creating new users
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -41,31 +40,34 @@ def signup_view(request):
         form = UserCreationForm()
     return render(request, 'auth.html', {'form': form, 'action': 'signup'})
 
+# Logout view for logging out the user
 def logout_view(request):
     logout(request)
     messages.info(request, 'You have been logged out.')
-    return redirect('login')
+    return redirect('home')
 
-
-
+# Home page view for authenticated and unauthorized users
 def home_view(request):
-    # Call async function using async_to_sync
-    # 
+    if request.user.is_authenticated:
+        return render(request, 'guest.html')
+    else:
+        # If the user is not authenticated, render the guest home page
+        return render(request, 'guest.html')
 
-    # Fetch all position reports from the database
-    reports = PositionReport.objects.all()
-
-    # Render the reports in the 'vesel.html' template
-    return render(request, 'vesel.html', {'reports': reports})
-
-# Django view to render the map with the AIS data
+# Map view for rendering AIS data on the map
 def map(request):
-    # Since 'main.start' is an async function, you must ensure it's properly executed
-    # Here you need to manage it correctly
+    if request.user.is_authenticated:
+        reports = PositionReport.objects.all()
+        return render(request, 'ships.html', {'reports': reports})
+    else:
+        # If the user is not authenticated, render the guest home page
+        return render(request, 'guest.html')
 
-    
-    # Fetch all position reports from the database
-    reports = PositionReport.objects.all()
-    
-    # Render the map in the 'ships.html' template
-    return render(request, 'ships.html', {'reports': reports})
+def AIS(request):
+    if request.user.is_authenticated:
+    # Fetch all position reports from the database for logged-in users
+        reports = PositionReport.objects.all()
+        return render(request, 'vesel.html', {'reports': reports})
+    else:
+        # If the user is not authenticated, render the guest home page
+        return render(request, 'guest.html')
