@@ -22,8 +22,9 @@ from django.urls import path
 from Ships.views import login_view, signup_view, logout_view
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.home_view, name="home"),
-    path('map/', views.map, name="map"),              # URL for the map view
+    path('', views.home_view, name="home"),
+    path('ais/', views.AIS, name="AIS"),              # URL for the map view
+    path('map/', views.map, name="MAP"),              # URL for the map view
 
     # Django's built-in login and logout views
      path('login/', login_view, name='login'),
