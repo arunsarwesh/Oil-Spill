@@ -74,7 +74,7 @@
     {% for report in reports %}
     ships.push({
         time: "{{ report.timestamp }}",
-        name: "{{ report.name }}",  // Properly escape Django variables            
+        name: "{{ report.name }}",  // Properly escape Django variables
         ship_id: "{{ report.ship_id }}",
         speed: "{{ report.speed }}",
         Cog: "{{ report.Cog }}",
@@ -89,7 +89,7 @@
     });
 
     function AIS() {
-        window.location.href = "http://127.0.0.1:8000/"; 
+        window.location.href = "{% url 'AIS' %}";
     }
 </script>
 
