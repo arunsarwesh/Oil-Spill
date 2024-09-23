@@ -6,7 +6,7 @@
 <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
 
 <style>
-   
+
     /* Floating button style */
     .float-btn {
         position: fixed;
@@ -84,9 +84,9 @@
 
     <script>
         function goToMap() {
-            window.location.href = "http://127.0.0.1:8000/map/"; // Navigates to the map page
+            window.location.href="{% url 'MAP' %}"; // Navigates to the map page
         }
-        
+
     </script>
-    
+
 {% endblock %}
