@@ -46,13 +46,18 @@ def logout_view(request):
     messages.info(request, 'You have been logged out.')
     return redirect('home')
 
+def osp(request):
+    if request.user.is_authenticated:
+        return render(request, 'oil-spills.html')
+
 # Home page view for authenticated and unauthorized users
 def home_view(request):
     if request.user.is_authenticated:
-        return render(request, 'guest.html')
+        return render(request, 'home.html')
     else:
         # If the user is not authenticated, render the guest home page
         return render(request, 'guest.html')
+
 
 # Map view for rendering AIS data on the map
 def map(request):
