@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from Ships.models import PositionReport
+from django.http import HttpResponseForbidden
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
@@ -49,6 +50,9 @@ def logout_view(request):
 def osp(request):
     if request.user.is_authenticated:
         return render(request, 'oil-spills.html')
+    else:
+        # Return a 403 Forbidden response or redirect to login
+        return HttpResponseForbidden("You are not authorized to access this page.")
 
 # Home page view for authenticated and unauthorized users
 def home_view(request):
